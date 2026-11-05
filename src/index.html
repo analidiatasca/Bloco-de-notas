@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-Type" content="text/html;charset=UTF-8">
+    <title>Facilitando Anotações</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div class="barra-superior">
+      <!-- Barra superior / Moldura-->
+    </div>
+
+    <div class="abas"> 
+      <button class="btn-aba ativa" onclick="mudarNota('nota1')" id="btn-nota1"> Nota 1 </button>
+      <button class="btn-aba" onclick="mudarNota('nota2')" id="btn-nota2"> Nota 2 </button>
+      <button class="btn-aba" onclick="mudarNota('nota3')" id="btn-nota3"> Nota 3 </button>
+
+      <button class="btn-limpar" onclick="limparNotaAtual()" title="Apagar Nota"> Limpar Nota </button>
+    </div>
+
+    <textarea placeholder="Digite aqui suas Anotações"></textarea>
+
+    <script>
+      const texto = document.querySelector("textarea");
+      const placeholder = document.querySelector("textarea::placeholder");
+      window.onload = function() {
+        const textoSalvo = localStorage.getItem("texto") ||""
+        texto.innerHTML = textoSalvo;
+        const placeholderSalvo = localStorage.getItem("placeholder") ||""
+        placeholder.innerHTML = placeholderSalvo;
+      }
+    texto.addEventListener("input", function(evento) {
+      localStorage.setItem("texto", evento.target.value);
+    })
+    placeholder.addEventListener("input", function(evento) {
+      localStorage.setItem("placeholder", evento.target.value);
+    })
+
+      const CampoTexto = document.querySelector("textarea");
+      let notaAtual = "nota1";
+      window.onload = function() {
+        const notaSalva = localStorage.getItem(notaAtual) || "";
+        CampoTexto.innerHTML = notaSalva;
+      }
+      CampoTexto.addEventListener("input", function(evento) {
+        localStorage.setItem(notaAtual, evento.target.value);
+      })
+
+      function CarregarNota(chave) {
+        const textoSalvo = localStorage.getItem(chave) || "";
+        campoTexto.innerHTML = textoSalvo;
+      }
+
+      function mudarNota(novaChave) {
+        notaAtual = novaChave;
+        carregarNota(notaAtual);
+        atualizarEstiloAbas();
+      }
+
+      function atualizarEstiloAbas() {
+        document.querySelectorAll(".btn-aba").forEach(btn => {
+          btn.classList.remove("ativa");
+        });
+        document.getElementById(`btn-${notaAtual}`).classList.add("ativa");
+      }
+
+      function limparNotaAtual() {
+      if (confirm("Deseja apagar o conteúdo desta nota?")) {
+      localStorage.removeItem(notaAtual); // Apaga a chave do LocalStorage
+      campoTexto.innerHTML = ""; // Limpa a tela
+      } }
+    </script>
+
+  </body>
+</html>
+

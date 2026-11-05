@@ -1,0 +1,54 @@
+* {
+  font-family: fantasy;
+  font-size: 14pt;
+}
+
+body {
+  background-image: url("./Background.jpg");
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  width: 100vw;
+}
+
+div.barra-superior {
+  background-color: rgba(142, 81, 177, 0.747);
+  height: 24px;
+  -webkit-app-region: drag; /*Torna a barra superior arrastavel*/
+  flex-shrink: 0; /*Impede que a barra encolha */
+}
+
+textarea {
+  background: transparent;
+  color: rgb(142, 81, 177);
+  border: none;
+  flex: 1;
+  padding: 12px;
+  padding-top: 10px;
+  outline: none;
+  resize: none;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+button {
+-webkit-app-region: no-drag; /* Permite clicar nos botões */
+cursor: pointer;
+border: none;
+font-size: 9pt;
+padding: 3px 8px;
+border-radius: 3px;
+background: rgba(142, 81, 177, 0.747);
+color: #3f3f3f;
+}
+button.ativa {
+background: rgba(200, 113, 250, 0.747);
+font-weight: bold;
+}
+.btn-limpar {
+background: rgba(142, 81, 177, 0.747);
+color: #3f3f3f;
+}
